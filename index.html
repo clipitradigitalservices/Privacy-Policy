@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Privacy Policy</title>
+  <style>
+    /* Dark full-viewport canvas with subtle motion */
+    :root{
+      --bg-1: #040507;
+      --bg-2: #071022;
+      --accent-a: #7c3aed;
+      --accent-b: #06b6d4;
+    }
+    html,body{height:100%;margin:0}
+    body{
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      background:
+        radial-gradient(600px 300px at 10% 20%, rgba(124,58,237,0.12), transparent 12%),
+        radial-gradient(500px 240px at 90% 80%, rgba(6,182,212,0.08), transparent 12%),
+        linear-gradient(180deg,var(--bg-1),var(--bg-2));
+      overflow:hidden;
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+      font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+    }
+
+    /* animated, oversized heading only */
+    h1{
+      margin:0;
+      font-weight:900;
+      font-size: clamp(48px, 14vw, 160px);
+      letter-spacing: -0.02em;
+      line-height: 0.95;
+      text-transform: none;
+      display:block;
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      background-image: linear-gradient(90deg, rgba(255,255,255,0.95), rgba(255,255,255,0.85));
+      position:relative;
+      transform: translateZ(0);
+      filter: drop-shadow(0 8px 40px rgba(2,6,23,0.7));
+    }
+
+    /* animated gradient overlay that fills the letters */
+    .glow{
+      position:absolute;inset:0;
+      background: linear-gradient(90deg, var(--accent-a), var(--accent-b), rgba(255,255,255,0.95));
+      background-size: 300% 100%;
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      animation: slide 6s linear infinite;
+      mix-blend-mode: screen;
+      pointer-events:none;
+    }
+    @keyframes slide{
+      0%{background-position:0% 50%}
+      50%{background-position:100% 50%}
+      100%{background-position:0% 50%}
+    }
+
+    /* subtle vertical float + bounce on load */
+    .wrap{
+      display:inline-block;
+      transform-origin:center;
+      animation: floatIn .9s cubic-bezier(.2,.9,.25,1) both, bob 6s ease-in-out infinite;
+    }
+    @keyframes floatIn{
+      from{opacity:0; transform:translateY(18px) scale(.995)}
+      to{opacity:1; transform:none}
+    }
+    @keyframes bob{
+      0%{transform:translateY(0)}
+      50%{transform:translateY(-6px)}
+      100%{transform:translateY(0)}
+    }
+
+    /* very subtle, large text stroke outline for depth */
+    h1::before{
+      content: attr(data-text);
+      position:absolute;left:0;top:0;
+      -webkit-text-stroke: 1px rgba(255,255,255,0.03);
+      color: transparent;
+      z-index:-1;
+      filter: blur(6px);
+      transform: translate(2px,2px) scale(1.02);
+      opacity:.12;
+    }
+
+    /* Hide everything else (no header/footer or extra UI) */
+    :where(body) > *:not(.wrap) { display:none; }
+
+    /* Respect reduced motion */
+    @media (prefers-reduced-motion: reduce) {
+      .glow { animation: none; }
+      .wrap { animation: none; }
+    }
+  </style>
+</head>
+<body>
+  <span class="wrap" role="main" aria-label="Privacy Policy">
+    <h1 data-text="Privacy Policy">
+      <span class="glow" aria-hidden="true">Privacy Policy</span>
+      Privacy Policy
+    </h1>
+  </span>
+</body>
+</html>
